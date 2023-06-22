@@ -22,7 +22,7 @@ const displayMeals = (meals) => {
             <div class="card-body">
               <h5 class="card-title">${meal.strMeal}</h5>
               <p class="card-text">এটি খুব মজার এবং সুস্বাদু  খাবার।</p>
-           <button onclick="loadMealOrders(${meal.idMeal})" type="button" class="btn btn-success fs-5 fw-bold" data-bs-toggle="modal" data-bs-target="#mealOrders">Order</button>
+           <button onclick="loadMealOrders(${meal.idMeal})" type="button" class="btn btn-success fs-5 fw-bold me-2" data-bs-toggle="modal" data-bs-target="#mealOrders">Order</button>
 
 <button onclick="loadMealDetails(${meal.idMeal})" type="button" class="btn btn-warning fs-5 fw-bold" data-bs-toggle="modal" data-bs-target="#mealDetails">Details</button> 
             </div>
@@ -66,10 +66,10 @@ const displayMealOrders = (orders) => {
   OrdersMeal.innerHTML = `
   <img class="img-fluid" src="${orders.strMealThumb}">
   <br>
-  <h5>Price : <p class="fw-normal text-success"> $20</p></h5>
-  <h5 class="fw-bolder p-1 text-warning"> Area : <small class="fw-normal text-success">${orders.strArea}</small></h5>
+  <h5 class="fw-bolder p-1 text-warning"> Price : <small class="fw-bold text-success "> $20 </small> </h5>
+  <h5 class="fw-bolder p-1 text-warning"> Area : <small class="fw-bold text-success">${orders.strArea}</small></h5>
   <h5 class="fw-bolder text-warning p-1"> Details : <p class="fw-normal text-success"> ${orders.strInstructions}</p></h5>
-  <h5 class="fw-bolder text-success">তৈরী করা দেখতে /How To Make : <a target="_blank" class="text-decoration-none fw-normal text-white btn btn-success" href=${orders.strYoutube}>  See Here</a></h5>
+  <h5 class="fw-bolder text-success">তৈরী করা দেখতে : <a target="_blank" class="text-decoration-none fw-normal text-white btn btn-success" href=${orders.strYoutube}>  See Here </a> </h5>
   `;
 };
 
@@ -91,9 +91,9 @@ const displayMealDetails = (details) => {
   <img class="img-fluid" src="${details.strMealThumb}">
   <br>
   <h5 class="fw-bolder p-1 text-warning">বেশি পছন্দ করেন/More Like People : <small class="fw-normal text-success">${details.strArea}</small></h5>
-  <h5 class="fw-bolder text-warning p-1">তৈরী করার উপাদান সমুহ/For Make Ready Items : <p class="fw-normal text-success">${details.strIngredient1} , ${details.strIngredient2} , ${details.strIngredient3} , ${details.strIngredient4} , ${details.strIngredient5} , ${details.strIngredient6} , ${details.strIngredient7} , ${details.strIngredient8} , ${details.strIngredient9}, ${details.strIngredient10} , ${details.strIngredient11} , ${details.strIngredient12} , ${details.strIngredient13} , ${details.strIngredient14}, ${details.strIngredient15}, ${details.strIngredient16} Thats All...</p></h5>
+  <h5 class="fw-bolder text-warning p-1">তৈরী করার উপাদান সমুহ/For Make Ready Items : <p class="fw-normal text-success">${details.strIngredient1} , ${details.strIngredient2} , ${details.strIngredient3} , ${details.strIngredient4} , ${details.strIngredient5} , ${details.strIngredient6} , ${details.strIngredient7} , ${details.strIngredient8} , ${details.strIngredient9}, ${details.strIngredient10} , ${details.strIngredient11} , ${details.strIngredient12} , ${details.strIngredient13} , ${details.strIngredient14}, ${details.strIngredient15}, ${details.strIngredient16} Thats All...</p> </h5>
 
-  <h5 class="fw-bolder text-success">তৈরী করা দেখতে /How To Make : <a target="_blank" class="text-decoration-none fw-normal text-white btn btn-success" href=${details.strYoutube}>  See Here</a></h5>
+  <h5 class="fw-bolder text-success">তৈরী করা দেখতে /How To Make : <a target="_blank" class="text-decoration-none fw-normal text-white btn btn-success" href=${details.strYoutube}>  See Here</a> </h5>
   `;
 };
 
