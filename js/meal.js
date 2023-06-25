@@ -1,11 +1,17 @@
 // async await diye catch and normal kivabe kore seta dui vabe Example dewa ache
 // search or CNTL + F = Example
+
 const loadMeals = (SearchText) => {
   const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${SearchText}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => displayMeals(data.meals));
 };
+function randomPrice() {
+  const random = Math.round(Math.random() * 100);
+  return random;
+}
+
 const displayMeals = (meals) => {
   // step-1
   const mealContainer = document.getElementById("meals_container");
@@ -13,6 +19,11 @@ const displayMeals = (meals) => {
   mealContainer.innerText = "";
   // step--2
   meals.forEach((meal) => {
+    // random order number
+    let Ordered = Math.round(Math.random() * 100);
+    // random Price number
+    const price = randomPrice();
+    // let price = Math.round(Math.random() * 100);
     // step--3
     const mealDiv = document.createElement("div");
     mealDiv.classList.add("col");
@@ -22,12 +33,13 @@ const displayMeals = (meals) => {
             <div class="card-body">
               <h5 class="card-title">${meal.strMeal}</h5>
               <p class="card-text">এটি খুব মজার এবং সুস্বাদু  খাবার।</p>
+              <h3 class="card-text text-success">Price: $${price}.00</h3>
            <button onclick="loadMealOrders(${meal.idMeal})" type="button" class="btn btn-success fs-5 fw-bold me-2" data-bs-toggle="modal" data-bs-target="#mealOrders">Order</button>
 
 <button onclick="loadMealDetails(${meal.idMeal})" type="button" class="btn btn-warning fs-5 fw-bold" data-bs-toggle="modal" data-bs-target="#mealDetails">Details</button> 
             </div>
             <div class="card-footer d-flex align-items-center justify-content-center">
-              <small class="text-muted text-center">Last Ordered 7 mins ago</small>
+              <small class="text-muted text-center">Last Ordered ${Ordered} mins ago</small>
             </div>
           </div>
           
@@ -49,6 +61,7 @@ document.getElementById("search_btn").addEventListener("click", function () {
 // For Order Button--------------
 // Async Await Example And Catch error
 // catch  aivabe o dora jai abar (Details) e Niche onno rokom catch dekano hyece
+
 const loadMealOrders = async (mealId) => {
   const url = ` https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
   try {
@@ -60,16 +73,22 @@ const loadMealOrders = async (mealId) => {
   }
 };
 const displayMealOrders = (orders) => {
-  console.log(orders);
+  const price = randomPrice();
   document.getElementById("mealOrdersLabel").innerText = orders.strMeal;
   const OrdersMeal = document.getElementById("mealOrdersBody");
   OrdersMeal.innerHTML = `
   <img class="img-fluid" src="${orders.strMealThumb}">
   <br>
-  <h5 class="fw-bolder p-1 text-warning"> Price : <small class="fw-bold text-success "> $20 </small> </h5>
-  <h5 class="fw-bolder p-1 text-warning"> Area : <small class="fw-bold text-success">${orders.strArea}</small></h5>
-  <h5 class="fw-bolder text-warning p-1"> Details : <p class="fw-normal text-success"> ${orders.strInstructions}</p></h5>
-  <h5 class="fw-bolder text-success">তৈরী করা দেখতে : <a target="_blank" class="text-decoration-none fw-normal text-white btn btn-success" href=${orders.strYoutube}>  See Here </a> </h5>
+  <h5 class="fw-bolder p-1 text-warning"> Price : <small class="fw-bold text-success "> $${price}.00 </small> </h5>
+  <h5 class="fw-bolder p-1 text-warning"> Area : <small class="fw-bold text-success">${
+    orders.strArea
+  }</small></h5>
+  <h5 class="fw-bolder text-warning p-1"> Details : <p class="fw-normal text-success"> ${
+    orders.strInstructions.slice(0, 250) + "...."
+  }</p></h5>
+  <h5 class="fw-bolder text-success">তৈরী করা দেখতে : <a target="_blank" class="text-decoration-none fw-normal text-white btn btn-success" href=${
+    orders.strYoutube
+  }>  See Here </a> </h5>
   `;
 };
 
