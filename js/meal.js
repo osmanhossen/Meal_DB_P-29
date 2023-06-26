@@ -48,16 +48,26 @@ const displayMeals = (meals) => {
     mealContainer.appendChild(mealDiv);
   });
 };
-// const searchMeals = () => {};
 
+// search Button clicked after search
 document.getElementById("search_btn").addEventListener("click", function () {
   const SearchText = document.getElementById("search_field").value;
 
   loadMeals(SearchText);
 
   // clear search field
-  SearchText.value = "";
+  document.getElementById("search_field").value = "";
 });
+//  handle search enter key
+
+document
+  .getElementById("search_field")
+  .addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      loadMeals("fish");
+    }
+  });
+
 // For Order Button--------------
 // Async Await Example And Catch error
 // catch  aivabe o dora jai abar (Details) e Niche onno rokom catch dekano hyece
